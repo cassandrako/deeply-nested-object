@@ -5,4 +5,5 @@ body {
 
 canvas {
     display: block;
+    background-color: #F5F5F5; /* off-white colder tint */
 }
