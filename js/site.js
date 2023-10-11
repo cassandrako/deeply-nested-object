@@ -14,7 +14,7 @@ const createSkier = (type) => {
             if (this.type === 'frenchfry') {
                 this.y += this.speed;
             } else if (this.type === 'sCurve') {
-                this.x += this.speed * Math.sin(this.y / 100);
+                this.x += this.speed * Math.sin(this.y / 100); //why is this not displaying in github?
                 this.y += this.speed;
             }
             if (this.y > canvas.height && this.type !== 'notSkiing') {
