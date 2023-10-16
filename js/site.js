@@ -14,7 +14,7 @@ const createSkier = (type) => {
             if (this.type === 'frenchfry') {
                 this.y += this.speed;
             } else if (this.type === 'sCurve') {
-                this.x += this.speed * Math.sin(this.y / 100); //why is this not displaying in github?
+                this.x += this.speed * Math.sin(this.y / 100);
                 this.y += this.speed;
             }
             if (this.y > canvas.height && this.type !== 'notSkiing') {
@@ -32,15 +32,26 @@ const createSkier = (type) => {
 };
 
 let skiers = [];
-for (let i = 0; i < 3; i++) {
-    skiers.push(createSkier('frenchfry'));
+
+function generateSkiers() {
+    skiers = []; 
+
+    const frenchfryCount = document.getElementById('frenchfryRange').value;
+    const sCurveCount = document.getElementById('sCurveRange').value;
+    const notSkiingCount = document.getElementById('notSkiingRange').value;
+
+    for (let i = 0; i < frenchfryCount; i++) {
+        skiers.push(createSkier('frenchfry'));
+    }
+    for (let i = 0; i < sCurveCount; i++) {
+        skiers.push(createSkier('sCurve'));
+    }
+    for (let i = 0; i < notSkiingCount; i++) {
+        skiers.push(createSkier('notSkiing'));
+    }
 }
-for (let i = 0; i < 3; i++) {
-    skiers.push(createSkier('sCurve'));
-}
-for (let i = 0; i < 4; i++) {
-    skiers.push(createSkier('notSkiing'));
-}
+
+document.getElementById('updateSkiers').addEventListener('click', generateSkiers);
 
 class Snowflake {
     constructor() {
@@ -65,19 +76,8 @@ class Snowflake {
 
 const snowflakes = Array(100).fill().map(() => new Snowflake());
 
-const drawMountain = () => {
-    ctx.fillStyle = '#AAA';
-    ctx.beginPath();
-    ctx.moveTo(0, canvas.height - 100);
-    ctx.lineTo(canvas.width, canvas.height - 100);
-    ctx.lineTo(canvas.width / 2, canvas.height / 2);
-    ctx.closePath();
-    ctx.fill();
-};
-
 function animate() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    // drawMountain(); try to improve this with a .jpg and then set parameters maybe...
     for (let skier of skiers) {
         skier.move();
         skier.draw();
@@ -89,4 +89,5 @@ function animate() {
     requestAnimationFrame(animate);
 }
 
+generateSkiers();
 animate();
