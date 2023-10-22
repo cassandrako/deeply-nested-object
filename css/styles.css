@@ -1,31 +1,56 @@
 body {
     margin: 0;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     height: 100vh;
-}
-
-#controls {
-    padding: 10px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: center;
-    background-color: rgba(255, 255, 255, 0.7); 
-}
-
-#controls label {
-    font-family: sans-serif;
-    font-weight: bold;
+    overflow: hidden;
 }
 
 canvas {
-    flex-grow: 1; 
-    background-color: #F5F5F5; 
+    flex-grow: 1;
+    background-color: #F5F5F5;
+}
+
+#sceneCard {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    cursor: pointer;
+    transition: opacity 1s;
+}
+
+#sceneCard h1, #sceneCard p {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#controls {
+    padding: 20px;
+    width: 20%; 
+    height: 50vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 0.7);
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    box-sizing: border-box;
+    border-radius: 10px;
 }
 
 label, input, button {
-    margin: 5px;
+    margin: 10px 0;
+    width: 90%; 
 }
 
 button#updateSkiers {
@@ -35,6 +60,8 @@ button#updateSkiers {
     border: none;
     border-radius: 25px;
     font-size: 16px;
+    font-weight: bold;
+    font-family: sans-serif;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.3s;
     outline: none;
@@ -51,4 +78,3 @@ button#updateSkiers:active {
     transform: scale(1);
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
-

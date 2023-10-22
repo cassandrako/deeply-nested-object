@@ -34,12 +34,10 @@ const createSkier = (type) => {
 let skiers = [];
 
 function generateSkiers() {
-    skiers = []; 
-
+    skiers = [];
     const frenchfryCount = document.getElementById('frenchfryRange').value;
     const sCurveCount = document.getElementById('sCurveRange').value;
     const notSkiingCount = document.getElementById('notSkiingRange').value;
-
     for (let i = 0; i < frenchfryCount; i++) {
         skiers.push(createSkier('frenchfry'));
     }
@@ -88,6 +86,13 @@ function animate() {
     }
     requestAnimationFrame(animate);
 }
+
+document.getElementById('sceneCard').addEventListener('click', function() {
+    this.style.opacity = '0';
+    setTimeout(() => {
+        this.style.display = 'none';
+    }, 1000);
+});
 
 generateSkiers();
 animate();
